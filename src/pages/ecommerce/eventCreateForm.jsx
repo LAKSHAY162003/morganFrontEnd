@@ -40,20 +40,12 @@ export default function EventForm() {
         navigate("/events/AllEvents");
     }
     function handleCancel(){
-        
+        navigate("/events/AllEvents");
     }
 
   return (
     <form onSubmit={handleSubmit}>
-      <div className="space-y-12 mx-12 md:mx-24 lg:mx-80">
-        {/* <div className="border-b border-gray-900/10 pb-12">
-          <h2 className="text-base font-semibold leading-7 text-gray-900">Add Event Details !</h2>
-          <p className="mt-1 text-sm leading-6 text-gray-600">
-            Add all the details carefully .
-          </p> */}
-
-          {/* <div className="mt-10 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6"> */}
-            
+      <div className="space-y-12 mx-12 md:mx-24 lg:mx-40">
             {/* We Could add this functionality in future !! */}
             {/* <div className="col-span-full">
               <label htmlFor="cover-photo" className="block text-sm font-medium leading-6 text-gray-900">
@@ -75,8 +67,6 @@ export default function EventForm() {
                 </div>
               </div>
             </div> */}
-          {/* </div> */}
-        {/* </div> */}
 
         <div className="my-2 border-b border-gray-900/10 pb-12">
           <h2 className="text-base font-semibold leading-7 text-gray-900">Add Event Details</h2>
