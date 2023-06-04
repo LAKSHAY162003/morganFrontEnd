@@ -1,21 +1,29 @@
-import React, { useState } from 'react';
-
+// import React from 'react';
+import React, { useState, useEffect } from 'react';
 import Sidebar from '../../partials/Sidebar';
 import Header from '../../partials/Header';
 import DeleteButton from '../../partials/actions/DeleteButton';
 import DateSelect from '../../components/DateSelect';
 import FilterButton from '../../components/DropdownFilter';
-import CustomersTable from '../../partials/customers/CustomersTable';
+import EventUsersTable from './UserList';
 import PaginationClassic from '../../components/PaginationClassic';
+import { useLocation } from 'react-router-dom';
+function Users() {
 
-function Customers() {
+    const location = useLocation();
 
+    // console.log(participants);
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const [selectedItems, setSelectedItems] = useState([]);
-
+  const [participants,setParticipants]=useState([]);
   const handleSelectedItems = (selectedItems) => {
     setSelectedItems([...selectedItems]);
   };
+
+
+  let handleClickFnc=()=>{
+    console.log("clicked !! ");
+  }
 
   return (
     <div className="flex h-screen overflow-hidden">
@@ -57,7 +65,7 @@ function Customers() {
                   <svg className="w-4 h-4 fill-current opacity-50 shrink-0" viewBox="0 0 16 16">
                     <path d="M15 7H9V1c0-.6-.4-1-1-1S7 .4 7 1v6H1c-.6 0-1 .4-1 1s.4 1 1 1h6v6c0 .6.4 1 1 1s1-.4 1-1V9h6c.6 0 1-.4 1-1s-.4-1-1-1z" />
                   </svg>
-                  <span className="hidden xs:block ml-2">Add Customer</span>
+                  <span onClick={handleClickFnc} className="hidden xs:block ml-2">Add Event</span>
                 </button>
                 
               </div>
@@ -65,7 +73,7 @@ function Customers() {
             </div>
 
             {/* Table */}
-            <CustomersTable selectedItems={handleSelectedItems} />
+            <EventUsersTable sessionId={location.state.sessionId} selectedItems={handleSelectedItems} />
 
             {/* Pagination */}
             <div className="mt-8">
@@ -81,4 +89,4 @@ function Customers() {
   );
 }
 
-export default Customers;
+export default Users;

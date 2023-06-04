@@ -9,7 +9,7 @@ import "./charts/ChartjsConfig"
 import Dashboard from "./pages/Dashboard"
 import Analytics from "./pages/Analytics"
 import Fintech from "./pages/Fintech"
-import Customers from "./pages/ecommerce/Customers"
+import Events from "./pages/ecommerce/Events"
 import Orders from "./pages/ecommerce/Orders"
 import Invoices from "./pages/ecommerce/Invoices"
 import Shop from "./pages/ecommerce/Shop"
@@ -73,6 +73,7 @@ import AccordionPage from "./pages/component/AccordionPage"
 import IconsPage from "./pages/component/IconsPage"
 import "./i18n"
 import Footer from "./components/Footer"
+import Users from "./pages/ecommerce/Users";
 
 import { UserProvider } from "../hooks/useUser"
 
@@ -89,9 +90,10 @@ function App() {
     <UserProvider>
       <Routes>
         <Route exact path="/" element={<Dashboard />} />
+        <Route exact path="/events/userList" element={<Users/>}/>
         <Route path="/dashboard/analytics" element={<Analytics />} />
         <Route path="/dashboard/fintech" element={<Fintech />} />
-        <Route path="/ecommerce/customers" element={<Customers />} />
+        <Route path="/ecommerce/customers" element={<Events />} />
         <Route path="/ecommerce/orders" element={<Orders />} />
         <Route path="/ecommerce/invoices" element={<Invoices />} />
         <Route path="/ecommerce/shop" element={<Shop />} />
