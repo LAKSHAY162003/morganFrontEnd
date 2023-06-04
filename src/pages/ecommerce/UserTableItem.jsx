@@ -49,6 +49,9 @@ function EventUserTableItem(props) {
       <td className="px-24 first:pl-5 last:pr-5 py-3 whitespace-nowrap">
         <div className="text-left">{props.language}</div>
       </td>
+      <td className="px-24 first:pl-5 last:pr-5 py-3 whitespace-nowrap">
+        <div className="text-left">{props.address}</div>
+      </td>
       <td className="px-2 first:pl-5 last:pr-5 py-3 whitespace-nowrap w-px">
         {/* Menu button */}
         <button onClick={showUserProfile} className="text-slate-400 hover:text-slate-500 rounded-full">

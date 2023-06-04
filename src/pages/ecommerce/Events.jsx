@@ -6,10 +6,10 @@ import DeleteButton from '../../partials/actions/DeleteButton';
 import DateSelect from '../../components/DateSelect';
 import FilterButton from '../../components/DropdownFilter';
 import PaginationClassic from '../../components/PaginationClassic';
-import EventsTable from '../../partials/customers/EventsTable';
-
+import EventsTable from '../../partials/events/EventsTable';
+import { useNavigate } from 'react-router-dom';
 function Events() {
-
+  const navigate=useNavigate();
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const [selectedItems, setSelectedItems] = useState([]);
 
@@ -18,7 +18,8 @@ function Events() {
   };
 
   let handleClickFnc=()=>{
-    console.log("clicked !! ");
+    // console.log("clicked !! ");
+    navigate("/events/createEvent");
   }
 
   return (

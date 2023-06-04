@@ -91,6 +91,9 @@ function EventUsersTable(props) {
                 <th className="px-12 first:pl-5 last:pr-5 py-3 whitespace-nowrap">
                   <div className="font-semibold">Primary Language</div>
                 </th>
+                <th className="px-12 first:pl-5 last:pr-5 py-3 whitespace-nowrap">
+                  <div className="font-semibold">Address</div>
+                </th>
               </tr>
             </thead>
             {/* Table body */}
@@ -105,6 +108,7 @@ function EventUsersTable(props) {
                       community={participant.basicDetails.Community}
                       phone={participant.basicDetails.PhoneNumber}
                       language={participant.basicDetails.PrimaryLanguage}
+                      address={participant.basicDetails.Address}
                     />
                   )
                 })

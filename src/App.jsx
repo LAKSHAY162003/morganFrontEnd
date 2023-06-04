@@ -76,6 +76,7 @@ import Footer from "./components/Footer"
 import Users from "./pages/ecommerce/Users";
 
 import { UserProvider } from "../hooks/useUser"
+import EventForm from "./pages/ecommerce/eventCreateForm"
 
 function App() {
   const location = useLocation()
@@ -91,9 +92,10 @@ function App() {
       <Routes>
         <Route exact path="/" element={<Dashboard />} />
         <Route exact path="/events/userList" element={<Users/>}/>
+        <Route exact path="/events/createEvent" element={<EventForm/>}/>
         <Route path="/dashboard/analytics" element={<Analytics />} />
         <Route path="/dashboard/fintech" element={<Fintech />} />
-        <Route path="/ecommerce/customers" element={<Events />} />
+        <Route path="/events/AllEvents" element={<Events />} />
         <Route path="/ecommerce/orders" element={<Orders />} />
         <Route path="/ecommerce/invoices" element={<Invoices />} />
         <Route path="/ecommerce/shop" element={<Shop />} />
