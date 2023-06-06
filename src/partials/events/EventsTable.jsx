@@ -78,7 +78,7 @@ function EventsTable({
                   <span className="sr-only">Favourite</span>
                 </th>
                 <th className="px-2 first:pl-5 last:pr-5 py-3 whitespace-nowrap">
-                  <div className="font-semibold text-left">SessionId</div>
+                  <div className="font-semibold text-left">Event Name</div>
                 </th>
                 <th className="px-2 first:pl-5 last:pr-5 py-3 whitespace-nowrap">
                   <div className="font-semibold text-left">No of Participants</div>
@@ -92,6 +92,9 @@ function EventsTable({
                 <th className="px-2 first:pl-5 last:pr-5 py-3 whitespace-nowrap">
                   <div className="font-semibold">Number of Feedbacks</div>
                 </th>
+                <th className="px-2 first:pl-5 last:pr-5 py-3 whitespace-nowrap">
+                  <div className="font-semibold">More</div>
+                </th>
               </tr>
             </thead>
             {/* Table body */}
@@ -101,10 +104,13 @@ function EventsTable({
                   return (
                     <EventsTableItem
                       key={event._id}
-                      sessionId={event.sessionId}
-                      participants={event.participants}
-                      participantsCount={event.participants.length}
+                      _id={event._id}
+                      eventName={event.eventName}
+                      participants={event.attended}
+                      participantsCount={event.attended.length}
                       category={event.category}
+                      eventLocation={event.location}
+                      registeredCount={event.registered.length}
                       feedbacksCount={event.feedback.length}
                       handleClick={handleClick}
                       isChecked={isCheck.includes(event.sessionId)}

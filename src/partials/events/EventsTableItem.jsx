@@ -5,8 +5,8 @@ function EventsTableItem(props) {
   const navigate = useNavigate();
   let showUserList=()=>{
     // based on sessionId basically just show the participants array !! 
-    // console.log(props.participants);
-    navigate('/events/userList',{state:{sessionId:props.sessionId}});
+    // console.log(props._id);
+    navigate('/events/userList',{state:{eventId:props._id}});
   }
   
   return (
@@ -33,7 +33,7 @@ function EventsTableItem(props) {
           {/* <div className="w-10 h-10 shrink-0 mr-2 sm:mr-3">
             <img className="rounded-full" src={props.image} width="40" height="40" alt={props.name} />
           </div> */}
-          <div className="font-medium text-slate-800">{props.sessionId}</div>
+          <div className="font-medium text-slate-800">{props.eventName}</div>
           
         </div>
       </td>

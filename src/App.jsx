@@ -78,6 +78,8 @@ import Users from "./pages/ecommerce/Users";
 import { UserProvider } from "../hooks/useUser"
 import EventForm from "./pages/ecommerce/eventCreateForm"
 import AddEventPage from "./pages/ecommerce/AddEventPage"
+import AttendanceForm from "./pages/ecommerce/attendanceForm"
+import AddUserPage from "./pages/ecommerce/AddUserPage"
 
 function App() {
   const location = useLocation()
@@ -95,7 +97,8 @@ function App() {
         <Route exact path="/events/userList" element={<Users/>}/>
         <Route exact path="/events/createEvent" element={<AddEventPage/>}/>
         <Route path="/events/AllEvents" element={<Events />} />
-
+        <Route path="/events/markAttendance" element={<AddUserPage />} />
+        
 
       {/*  The above routes are the event related routes !! */}
 

@@ -12,11 +12,12 @@ function EventUsersTable(props) {
   
 
   useEffect(() => {
-        console.log(props.sessionId);
+        console.log(props.eventId);
 
         async function fetchData() {
             try {
-              const response = await fetch(`http://localhost:3000/event/attendance/${props.sessionId}`);
+              const response = await fetch(`http://localhost:3000/events/attendance?eventId=${props.eventId}`);
+
               const data = await response.json();
             //   console.log(data.result);
               const customers= data.result;
@@ -103,6 +104,7 @@ function EventUsersTable(props) {
                   return (
                     <EventUserTableItem
                       key={participant._id}
+                      _id={participant._id}
                       name={participant.basicDetails.Name}
                       age={participant.basicDetails.Age}
                       community={participant.basicDetails.Community}

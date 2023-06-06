@@ -7,15 +7,14 @@ import DateSelect from '../../components/DateSelect';
 import FilterButton from '../../components/DropdownFilter';
 import EventUsersTable from './UserList';
 import PaginationClassic from '../../components/PaginationClassic';
-import { useLocation } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 function Users() {
 
     const location = useLocation();
-
+    const navigate=useNavigate();
     // console.log(participants);
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const [selectedItems, setSelectedItems] = useState([]);
-  const [participants,setParticipants]=useState([]);
   const handleSelectedItems = (selectedItems) => {
     setSelectedItems([...selectedItems]);
   };
@@ -23,6 +22,7 @@ function Users() {
 
   let handleClickFnc=()=>{
     console.log("clicked !! ");
+    navigate("/events/markAttendance",{state:{eventId:location.state.eventId}});
   }
 
   return (
@@ -65,7 +65,7 @@ function Users() {
                   <svg className="w-4 h-4 fill-current opacity-50 shrink-0" viewBox="0 0 16 16">
                     <path d="M15 7H9V1c0-.6-.4-1-1-1S7 .4 7 1v6H1c-.6 0-1 .4-1 1s.4 1 1 1h6v6c0 .6.4 1 1 1s1-.4 1-1V9h6c.6 0 1-.4 1-1s-.4-1-1-1z" />
                   </svg>
-                  <span onClick={handleClickFnc} className="hidden xs:block ml-2">Add Event</span>
+                  <span onClick={handleClickFnc} className="hidden xs:block ml-2">{`Add User (Mark Attendance)`}</span>
                 </button>
                 
               </div>
@@ -73,7 +73,7 @@ function Users() {
             </div>
 
             {/* Table */}
-            <EventUsersTable sessionId={location.state.sessionId} selectedItems={handleSelectedItems} />
+            <EventUsersTable eventId={location.state.eventId} selectedItems={handleSelectedItems} />
 
             {/* Pagination */}
             <div className="mt-8">
