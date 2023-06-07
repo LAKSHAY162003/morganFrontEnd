@@ -6,7 +6,7 @@ function SuggestedUser(props) {
   // let customers=[];
   const [list, setList] = useState([]);
   useEffect(() => {
-    console.log(props.name);
+    console.log(props.eventId);
     const fetchData = async () => {
         try {
           const response = await fetch(`http://localhost:3000/user/filter/name?name=${props.name}`);

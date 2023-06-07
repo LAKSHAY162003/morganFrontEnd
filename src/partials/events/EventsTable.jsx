@@ -3,19 +3,26 @@ import React, { useState, useEffect } from 'react';
 import EventsTableItem from './EventsTableItem';
 
 function EventsTable({
-  selectedItems
+  selectedItems,
+  factor,
+  value
 }) {
 
+  // console.log(factor+" "+value);
   // let customers=[];
   const [selectAll, setSelectAll] = useState(false);
   const [isCheck, setIsCheck] = useState([]);
   const [list, setList] = useState([]);
 
   
+  // basically what we can have ? on submit : idhar category and all 
+  // pahunch jayegi !! 
 
+  // now : add category to it !! if not undefined !! 
   useEffect(() => {
     async function fetchData() {
       try {
+        // console.log("LeetCode");
         const response = await fetch('http://localhost:3000/events');
         const data = await response.json();
         console.log(data.result);
@@ -30,6 +37,52 @@ function EventsTable({
       fetchData();
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+
+
+  const searchEventCollections = (f, v) => {
+    // Filter the collections based on the search criteria
+    const filteredCollections = list.filter((collection) => {
+      return collection[f] === v;
+    });
+  
+    // Update the state with the new filtered array
+    setList(filteredCollections);
+  };
+
+  useEffect(() => {
+    async function fetchData2() {
+      try {
+        // console.log("LeetCode");
+        const response = await fetch('http://localhost:3000/events');
+        const data = await response.json();
+        console.log(data.result);
+        const customers= data.result;
+        setList(customers);
+        // Do something with the data
+      } catch (error) {
+        console.log('Error:', error);
+      }
+    }
+    async function fetchData() {
+      try {
+        console.log(factor+" Hello :  "+value);
+        if(factor==="None"){
+          // do nothing !! 
+          fetchData2();
+          return;
+        }
+        searchEventCollections(factor,value);
+
+      } catch (error) {
+        console.log('Error:', error);
+      }
+    }
+
+      fetchData();
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [factor]);
+
+
 
   const handleSelectAll = () => {
     setSelectAll(!selectAll);

@@ -50,11 +50,18 @@ function EventUserTableItem(props) {
         <div className="text-left">{props.language}</div>
       </td>
       <td className="px-24 first:pl-5 last:pr-5 py-3 whitespace-nowrap">
-        <div className="text-left">{props.address}</div>
+        <div className="text-left">
+        {(props.typeOfEvent==="Attend") ?(<span className="inline-flex items-center rounded-md bg-green-50 px-2 py-1 text-base font-medium text-green-700 ring-1 ring-inset ring-green-600/20">
+        Attended
+      </span>):<span className="inline-flex items-center rounded-md bg-yellow-50 px-2 py-1 text-base font-medium text-yellow-800 ring-1 ring-inset ring-yellow-600/20">
+        Registered
+      </span>}
+        </div>
       </td>
-      <td className="px-2 first:pl-5 last:pr-5 py-3 whitespace-nowrap w-px">
+      
+      {/* <td className="px-2 first:pl-5 last:pr-5 py-3 whitespace-nowrap w-px"> */}
         {/* Menu button */}
-        <button onClick={showUserProfile} className="text-slate-400 hover:text-slate-500 rounded-full">
+        {/* <button onClick={showUserProfile} className="text-slate-400 hover:text-slate-500 rounded-full">
           <span className="sr-only">Menu</span>
           <svg className="w-8 h-8 fill-current" viewBox="0 0 32 32">
             <circle cx="16" cy="16" r="2" />
@@ -62,7 +69,7 @@ function EventUserTableItem(props) {
             <circle cx="22" cy="16" r="2" />
           </svg>
         </button>
-      </td>
+      </td> */}
     </tr>
   );
 }

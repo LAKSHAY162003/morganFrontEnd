@@ -8,20 +8,47 @@ function EventUsersTable(props) {
   const [selectAll, setSelectAll] = useState(false);
   const [isCheck, setIsCheck] = useState([]);
   const [list, setList] = useState([]);
+  const [list2, setList2] = useState([]);
 
+  // props.list !! : "Attend" or "Register"
+  console.log(props.list);
+  
+  // const handleFilterChange = (event) => {
+  //   const selectedFilter = event.target.value;
+  //   // Logic to update the list or list2 based on the selected filter
+
+  //   // Example logic:
+  //   if (selectedFilter === 'filter1') {
+  //     setList([...]); // Update list based on filter1
+  //     setShowList1(true); // Show list
+  //   } else if (selectedFilter === 'filter2') {
+  //     setList2([...]); // Update list2 based on filter2
+  //     setShowList1(false); // Hide list
+  //   }
+  // };
   
 
   useEffect(() => {
-        console.log(props.eventId);
-
+        console.log("Hello",props.eventId);
+      // /registeredList ispe bhi call karke registerList bhi mangwalo !!
+      // also have : only registered and only attended ka funda !! 
+      // have a tag against them !! 
         async function fetchData() {
             try {
               const response = await fetch(`http://localhost:3000/events/attendance?eventId=${props.eventId}`);
 
               const data = await response.json();
+              
+              const response2 = await fetch(`http://localhost:3000/events/registeredList?eventId=${props.eventId}`);
+
+              const data2 = await response2.json();
+
             //   console.log(data.result);
-              const customers= data.result;
-              setList(customers);
+              const attendies= data.result;
+              const registerations=data2.result;
+              setList(attendies);
+              setList2(registerations);
+              console.log(list2);
               // Do something with the data
             } catch (error) {
               console.log('Error:', error);
@@ -92,25 +119,36 @@ function EventUsersTable(props) {
                 <th className="px-12 first:pl-5 last:pr-5 py-3 whitespace-nowrap">
                   <div className="font-semibold">Primary Language</div>
                 </th>
-                <th className="px-12 first:pl-5 last:pr-5 py-3 whitespace-nowrap">
-                  <div className="font-semibold">Address</div>
-                </th>
               </tr>
             </thead>
             {/* Table body */}
             <tbody className="text-sm divide-y divide-slate-200">
               {
+                (props.list==="Attend")?
                 list.map(participant => {
                   return (
                     <EventUserTableItem
+                      typeOfEvent="Attend"
                       key={participant._id}
                       _id={participant._id}
-                      name={participant.basicDetails.Name}
-                      age={participant.basicDetails.Age}
+                      name={participant.basicDetails.name}
+                      age={participant.basicDetails.age}
                       community={participant.basicDetails.Community}
                       phone={participant.basicDetails.PhoneNumber}
-                      language={participant.basicDetails.PrimaryLanguage}
-                      address={participant.basicDetails.Address}
+                      language={participant.basicDetails.primaryLanguage}
+                    />
+                  )
+                }):list2.map(participant => {
+                  return (
+                    <EventUserTableItem
+                      typeOfEvent="Register"
+                      key={participant._id}
+                      _id={participant._id}
+                      name={participant.basicDetails.name}
+                      age={participant.basicDetails.age}
+                      community={participant.basicDetails.Community}
+                      phone={participant.basicDetails.PhoneNumber}
+                      language={participant.basicDetails.primaryLanguage}
                     />
                   )
                 })

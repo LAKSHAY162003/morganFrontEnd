@@ -2,14 +2,15 @@ import React, { useState } from 'react';
 
 import Sidebar from '../../partials/Sidebar';
 import Header from '../../partials/Header';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate ,useLocation} from 'react-router-dom';
 import EventForm from './eventCreateForm';
 import AttendanceForm from './attendanceForm';
-function AddUserPage(props) {
+function AddUserPage() {
   const navigate=useNavigate();
+  const location=useLocation();
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const [selectedItems, setSelectedItems] = useState([]);
-
+  // console.log(props);
   const handleSelectedItems = (selectedItems) => {
     setSelectedItems([...selectedItems]);
   };
@@ -46,7 +47,7 @@ function AddUserPage(props) {
             </div>
 
             {/* Form */}
-            <AttendanceForm eventId={props.eventId}/>
+            <AttendanceForm eventId={location.state.eventId}/>
 
           </div>
         </main>

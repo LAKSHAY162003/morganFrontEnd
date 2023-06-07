@@ -3,10 +3,10 @@ import { useNavigate } from 'react-router-dom';
 
 function SuggestedUserTableItem(props) {
   const navigate = useNavigate();
-  async function addUser(){
+  async function addUser(e){
+    e.preventDefault();
     const eventId=props.eventId;
     const userId=props._id;
-    
     try {
         const response = await fetch('http://localhost:3000/events/markAttendance', {
           method: 'POST',
@@ -15,16 +15,22 @@ function SuggestedUserTableItem(props) {
           },
           body: JSON.stringify({ eventId, userId }),
         });
-    
-        // Handle the response as needed
+
+        
         if (response.ok) {
-          console.log('Attendance marked successfully');
-        } else {
-          console.log('Failed to mark attendance');
-        }
+            // Successful response
+            // Access other response properties as needed
+            const data = await response.json();
+            // Handle the data returned in the response
+            console.log('Data:', data);
+            navigate("/events/userList",{state:{eventId:props.eventId}});
+          } else {
+            // Error response
+            console.log("Unsucess Retry");
+          }
       } catch (error) {
         // Handle fetch error
-        console.error('Error occurred during fetch:', error);
+        console.log('Error occurred during fetch:',error);
       }
         
 
@@ -75,14 +81,14 @@ function SuggestedUserTableItem(props) {
       </td>
       <td className="px-2 first:pl-5 last:pr-5 py-3 whitespace-nowrap w-px">
         {/* Menu button */}
-        <button onClick={showUserProfile} className="text-slate-400 hover:text-slate-500 rounded-full">
+        {/* <button className="text-slate-400 hover:text-slate-500 rounded-full">
           <span className="sr-only">Menu</span>
           <svg className="w-8 h-8 fill-current" viewBox="0 0 32 32">
             <circle cx="16" cy="16" r="2" />
             <circle cx="10" cy="16" r="2" />
             <circle cx="22" cy="16" r="2" />
           </svg>
-        </button>
+        </button> */}
       </td>
     </tr>
   );

@@ -13,16 +13,29 @@ function Users() {
     const location = useLocation();
     const navigate=useNavigate();
     // console.log(participants);
+    const [list,setList] = useState("Attend"); // State to control which list to show
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const [selectedItems, setSelectedItems] = useState([]);
   const handleSelectedItems = (selectedItems) => {
     setSelectedItems([...selectedItems]);
   };
 
+  const handleFilter = (event) => {
+    const selectedFilter = event.target.value;
+    // Logic to update the list or list2 based on the selected filter
+
+    // Example logic:
+    if (selectedFilter === 'filter1') {
+      setList("Attend"); // Show list
+    } else if (selectedFilter === 'filter2') {
+      setList("Register"); // Hide list
+    }
+  };
 
   let handleClickFnc=()=>{
-    console.log("clicked !! ");
-    navigate("/events/markAttendance",{state:{eventId:location.state.eventId}});
+    console.log("clicked !! ",location.state.eventId);
+    const eventId=location.state.eventId;
+    navigate("/events/markAttendance",{state:{eventId:eventId}});
   }
 
   return (
@@ -50,15 +63,18 @@ function Users() {
 
               {/* Right: Actions */}
               <div className="grid grid-flow-col sm:auto-cols-max justify-start sm:justify-end gap-2">
-
+              <select onChange={handleFilter}>
+              <option value="filter1">Attended</option>
+              <option value="filter2">Registered</option>
+              </select>
                 {/* Delete button */}
-                <DeleteButton selectedItems={selectedItems} />
+                {/* <DeleteButton selectedItems={selectedItems} /> */}
 
                 {/* Dropdown */}
-                <DateSelect />
+                {/* <DateSelect /> */}
                 
                 {/* Filter button */}
-                <FilterButton align="right" />
+                {/* <FilterButton align="right" /> */}
 
                 {/* Add customer button */}
                 <button className="btn bg-indigo-500 hover:bg-indigo-600 text-white">
@@ -73,7 +89,7 @@ function Users() {
             </div>
 
             {/* Table */}
-            <EventUsersTable eventId={location.state.eventId} selectedItems={handleSelectedItems} />
+            <EventUsersTable list={list} eventId={location.state.eventId} selectedItems={handleSelectedItems} />
 
             {/* Pagination */}
             <div className="mt-8">
