@@ -49,7 +49,7 @@ function EventUserTableItem(props) {
       <td className="px-24 first:pl-5 last:pr-5 py-3 whitespace-nowrap">
         <div className="text-left">{props.language}</div>
       </td>
-      <td className="px-24 first:pl-5 last:pr-5 py-3 whitespace-nowrap">
+      {(props.isBoth==="Yes") && <td className="px-24 first:pl-5 last:pr-5 py-3 whitespace-nowrap">
         <div className="text-left">
         {(props.typeOfEvent==="Attend") ?(<span className="inline-flex items-center rounded-md bg-green-50 px-2 py-1 text-base font-medium text-green-700 ring-1 ring-inset ring-green-600/20">
         Attended
@@ -57,7 +57,7 @@ function EventUserTableItem(props) {
         Registered
       </span>}
         </div>
-      </td>
+      </td>}
       
       {/* <td className="px-2 first:pl-5 last:pr-5 py-3 whitespace-nowrap w-px"> */}
         {/* Menu button */}

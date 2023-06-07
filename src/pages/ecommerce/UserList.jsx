@@ -122,7 +122,7 @@ function EventUsersTable(props) {
               </tr>
             </thead>
             {/* Table body */}
-            <tbody className="text-sm divide-y divide-slate-200">
+            {/* <tbody className="text-sm divide-y divide-slate-200">
               {
                 (props.list==="Attend")?
                 list.map(participant => {
@@ -153,7 +153,78 @@ function EventUsersTable(props) {
                   )
                 })
               }
-            </tbody>
+            </tbody> */}
+
+            <tbody className="text-sm divide-y divide-slate-200">
+  {props.list === "Attend"
+    ? list.map((participant) => {
+        return (
+          <EventUserTableItem
+            isBoth="No"
+            typeOfEvent="Attend"
+            key={participant._id}
+            _id={participant._id}
+            name={participant.basicDetails.name}
+            age={participant.basicDetails.age}
+            community={participant.basicDetails.Community}
+            phone={participant.basicDetails.PhoneNumber}
+            language={participant.basicDetails.primaryLanguage}
+          />
+        );
+      })
+    : props.list === "Register"
+    ? list2.map((participant) => {
+        return (
+          <EventUserTableItem
+            isBoth="No"
+            typeOfEvent="Register"
+            key={participant._id}
+            _id={participant._id}
+            name={participant.basicDetails.name}
+            age={participant.basicDetails.age}
+            community={participant.basicDetails.Community}
+            phone={participant.basicDetails.PhoneNumber}
+            language={participant.basicDetails.primaryLanguage}
+          />
+        );
+      })
+    : (
+        <>
+          {list.map((participant) => {
+            return (
+              <EventUserTableItem
+                isBoth="Yes"
+                typeOfEvent="Attend"
+                key={participant._id}
+                _id={participant._id}
+                name={participant.basicDetails.name}
+                age={participant.basicDetails.age}
+                community={participant.basicDetails.Community}
+                phone={participant.basicDetails.PhoneNumber}
+                language={participant.basicDetails.primaryLanguage}
+              />
+            );
+          })}
+          {list2.map((participant) => {
+            return (
+              <EventUserTableItem
+                isBoth="Yes"
+                typeOfEvent="Register"
+                key={participant._id}
+                _id={participant._id}
+                name={participant.basicDetails.name}
+                age={participant.basicDetails.age}
+                community={participant.basicDetails.Community}
+                phone={participant.basicDetails.PhoneNumber}
+                language={participant.basicDetails.primaryLanguage}
+              />
+            );
+          })}
+        </>
+      )}
+    </tbody>
+
+
           </table>
 
         </div>

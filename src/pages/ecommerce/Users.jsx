@@ -30,6 +30,9 @@ function Users() {
     } else if (selectedFilter === 'filter2') {
       setList("Register"); // Hide list
     }
+    else{
+      setList("Both");
+    }
   };
 
   let handleClickFnc=()=>{
@@ -66,6 +69,7 @@ function Users() {
               <select onChange={handleFilter}>
               <option value="filter1">Attended</option>
               <option value="filter2">Registered</option>
+              <option value="filter3">Both</option>
               </select>
                 {/* Delete button */}
                 {/* <DeleteButton selectedItems={selectedItems} /> */}
