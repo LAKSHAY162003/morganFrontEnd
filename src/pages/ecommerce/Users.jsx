@@ -8,6 +8,7 @@ import FilterButton from '../../components/DropdownFilter';
 import EventUsersTable from './UserList';
 import PaginationClassic from '../../components/PaginationClassic';
 import { useLocation, useNavigate } from 'react-router-dom';
+import FilterComponent from './userFilter';
 function Users() {
 
     const location = useLocation();
@@ -16,6 +17,10 @@ function Users() {
     const [list,setList] = useState("Attend"); // State to control which list to show
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const [selectedItems, setSelectedItems] = useState([]);
+
+  const [factor,setFactor]=useState("None");
+  const [value,setValue]=useState("None");
+
   const handleSelectedItems = (selectedItems) => {
     setSelectedItems([...selectedItems]);
   };
@@ -61,24 +66,20 @@ function Users() {
 
               {/* Left: Title */}
               <div className="mb-4 sm:mb-0">
-                <h1 className="text-2xl md:text-3xl text-slate-800 font-bold">Customers ✨</h1>
+                <h1 className="text-2xl md:text-3xl text-slate-800 font-bold">Users ✨</h1>
               </div>
 
               {/* Right: Actions */}
+              <div className="grid grid-flow-col sm:auto-cols-max justify-start sm:justify-end gap-2">
+              <FilterComponent eventId={location.state.eventId} setValue={setValue} setFactor={setFactor}/>
+                
+              </div>
               <div className="grid grid-flow-col sm:auto-cols-max justify-start sm:justify-end gap-2">
               <select onChange={handleFilter}>
               <option value="filter1">Attended</option>
               <option value="filter2">Registered</option>
               <option value="filter3">Both</option>
               </select>
-                {/* Delete button */}
-                {/* <DeleteButton selectedItems={selectedItems} /> */}
-
-                {/* Dropdown */}
-                {/* <DateSelect /> */}
-                
-                {/* Filter button */}
-                {/* <FilterButton align="right" /> */}
 
                 {/* Add customer button */}
                 <button className="btn bg-indigo-500 hover:bg-indigo-600 text-white">
@@ -89,11 +90,12 @@ function Users() {
                 </button>
                 
               </div>
+              
 
             </div>
 
             {/* Table */}
-            <EventUsersTable list={list} eventId={location.state.eventId} selectedItems={handleSelectedItems} />
+            <EventUsersTable value={value} factor={factor} list={list} eventId={location.state.eventId} selectedItems={handleSelectedItems} />
 
             {/* Pagination */}
             <div className="mt-8">

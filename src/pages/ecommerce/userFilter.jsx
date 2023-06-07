@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import SearchBox from './SearchBox';
-import Dropdown from './Dropdown';
+import SearchBox from './userSearchBox';
+import Dropdown from './userDropdown';
 import { useNavigate } from 'react-router-dom';
 const FilterComponent = (props) => {
   const [searchValue, setSearchValue] = useState('');
@@ -25,13 +25,13 @@ const FilterComponent = (props) => {
       props.setValue(searchValue);
       props.setFactor(selectedFactor); 
     }
-    navigate("/events/userList");
+    navigate("/events/userList",{state:{eventId:props.eventId}});
 
   };
   const factors = [
     { value: "None", label: "None" },
-    { value: 'category', label: 'Category' },
-    { value: 'eventName', label: 'Event Name' }
+    { value: 'Community', label: 'Community' },
+    { value: 'name', label: 'name' }
   ];
 
   return (

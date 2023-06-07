@@ -60,6 +60,62 @@ function EventUsersTable(props) {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
+
+  const searchEventCollections = (f, v) => {
+    // Filter the collections based on the search criteria
+    const filteredCollections = list.filter((collection) => {
+    return collection.basicDetails[f] === v;
+    });
+    const filteredCollections2 = list2.filter((collection) => {
+      return collection.basicDetails[f] === v;
+      });
+    
+    // Update the state with the new filtered array
+    setList(filteredCollections);
+    setList2(filteredCollections2);
+  };
+
+  useEffect(() => {
+    async function fetchData2() {
+      try {
+        const response = await fetch(`http://localhost:3000/events/attendance?eventId=${props.eventId}`);
+
+        const data = await response.json();
+        
+        const response2 = await fetch(`http://localhost:3000/events/registeredList?eventId=${props.eventId}`);
+
+        const data2 = await response2.json();
+
+      //   console.log(data.result);
+        const attendies= data.result;
+        const registerations=data2.result;
+        setList(attendies);
+        setList2(registerations);
+        console.log(list2);
+        // Do something with the data
+      } catch (error) {
+        console.log('Error:', error);
+      }
+    }
+    async function fetchData() {
+      try {
+        console.log(props.factor+" Hello :  "+props.value);
+        if(props.factor==="None"){
+          // do nothing !! 
+          fetchData2();
+          return;
+        }
+        searchEventCollections(props.factor,props.value);
+
+      } catch (error) {
+        console.log('Error:', error);
+      }
+    }
+
+      fetchData();
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [props.factor]);
+
   const handleSelectAll = () => {
     setSelectAll(!selectAll);
     setIsCheck(list.map(li => li.id));
