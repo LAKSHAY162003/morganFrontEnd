@@ -25,7 +25,7 @@ const FilterComponent = (props) => {
       props.setValue(searchValue);
       props.setFactor(selectedFactor); 
     }
-    navigate("/events/userList");
+    navigate("/events/AllEvents");
 
   };
   const factors = [

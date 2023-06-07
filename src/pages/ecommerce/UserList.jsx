@@ -29,7 +29,7 @@ function EventUsersTable(props) {
   
 
   useEffect(() => {
-        console.log("Hello",props.eventId);
+        // console.log("Yello",props.eventId);
       // /registeredList ispe bhi call karke registerList bhi mangwalo !!
       // also have : only registered and only attended ka funda !! 
       // have a tag against them !! 
